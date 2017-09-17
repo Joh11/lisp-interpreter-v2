@@ -66,7 +66,6 @@ namespace tree
 	}
 
 	// Move constructor (4/5)
-	/*
 	binary_tree(binary_tree && other) : _nodeType{std::move(other._nodeType)}
 	{
 	    if(_nodeType == node_type::LEAF)
@@ -83,10 +82,8 @@ namespace tree
 		other._children.right = nullptr;
 	    }
 	}
-	*/
 
 	// Move assignment operator (5/5)
-	/*
 	binary_tree & operator=(binary_tree && other)
 	{
 	    _nodeType = std::move(other._nodeType);
@@ -107,7 +104,6 @@ namespace tree
 
 	    return *this;
 	}
-	*/
 
 	// Other methods
 

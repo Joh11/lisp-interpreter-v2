@@ -1,0 +1,47 @@
+*** Error in `./app': free(): invalid pointer: 0x00007f1b980ebb98 ***
+======= Backtrace: =========
+/lib/x86_64-linux-gnu/libc.so.6(+0x777e5)[0x7f1b97d9e7e5]
+/lib/x86_64-linux-gnu/libc.so.6(+0x8037a)[0x7f1b97da737a]
+/lib/x86_64-linux-gnu/libc.so.6(cfree+0x4c)[0x7f1b97dab53c]
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_assignERKS4_+0xaf)[0x7f1b984263ef]
+/usr/lib/x86_64-linux-gnu/libstdc++.so.6(_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEaSERKS4_+0x9)[0x7f1b984266e9]
+./app[0x402255]
+./app[0x40217f]
+./app[0x401c9d]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf0)[0x7f1b97d47830]
+./app[0x4015d9]
+======= Memory map: ========
+00400000-00408000 r-xp 00000000 08:02 6954585                            /home/johan/Documents/cpp/utils/app
+00607000-00608000 r--p 00007000 08:02 6954585                            /home/johan/Documents/cpp/utils/app
+00608000-00609000 rw-p 00008000 08:02 6954585                            /home/johan/Documents/cpp/utils/app
+02092000-020c4000 rw-p 00000000 00:00 0                                  [heap]
+7f1b90000000-7f1b90021000 rw-p 00000000 00:00 0 
+7f1b90021000-7f1b94000000 ---p 00000000 00:00 0 
+7f1b97a1e000-7f1b97b26000 r-xp 00000000 08:02 5247767                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f1b97b26000-7f1b97d25000 ---p 00108000 08:02 5247767                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f1b97d25000-7f1b97d26000 r--p 00107000 08:02 5247767                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f1b97d26000-7f1b97d27000 rw-p 00108000 08:02 5247767                    /lib/x86_64-linux-gnu/libm-2.23.so
+7f1b97d27000-7f1b97ee7000 r-xp 00000000 08:02 5247772                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f1b97ee7000-7f1b980e7000 ---p 001c0000 08:02 5247772                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f1b980e7000-7f1b980eb000 r--p 001c0000 08:02 5247772                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f1b980eb000-7f1b980ed000 rw-p 001c4000 08:02 5247772                    /lib/x86_64-linux-gnu/libc-2.23.so
+7f1b980ed000-7f1b980f1000 rw-p 00000000 00:00 0 
+7f1b980f1000-7f1b98107000 r-xp 00000000 08:02 5247490                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f1b98107000-7f1b98306000 ---p 00016000 08:02 5247490                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f1b98306000-7f1b98307000 rw-p 00015000 08:02 5247490                    /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f1b98307000-7f1b98479000 r-xp 00000000 08:02 7088331                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f1b98479000-7f1b98679000 ---p 00172000 08:02 7088331                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f1b98679000-7f1b98683000 r--p 00172000 08:02 7088331                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f1b98683000-7f1b98685000 rw-p 0017c000 08:02 7088331                    /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f1b98685000-7f1b98689000 rw-p 00000000 00:00 0 
+7f1b98689000-7f1b986af000 r-xp 00000000 08:02 5247405                    /lib/x86_64-linux-gnu/ld-2.23.so
+7f1b98885000-7f1b9888a000 rw-p 00000000 00:00 0 
+7f1b988ab000-7f1b988ae000 rw-p 00000000 00:00 0 
+7f1b988ae000-7f1b988af000 r--p 00025000 08:02 5247405                    /lib/x86_64-linux-gnu/ld-2.23.so
+7f1b988af000-7f1b988b0000 rw-p 00026000 08:02 5247405                    /lib/x86_64-linux-gnu/ld-2.23.so
+7f1b988b0000-7f1b988b1000 rw-p 00000000 00:00 0 
+7ffd8d8a0000-7ffd8d8c1000 rw-p 00000000 00:00 0                          [stack]
+7ffd8d8f0000-7ffd8d8f2000 r--p 00000000 00:00 0                          [vvar]
+7ffd8d8f2000-7ffd8d8f4000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+Abandon

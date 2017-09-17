@@ -17,5 +17,8 @@ int main()
 
     std::cout << t1 << std::endl << t2;
 
+    std::cout << tree::ast{tree::ast{"lorem"}, tree::ast{"ipsum"}};    
+    //std::cout << tree::ast{{"+"}, {{"a"}, {{{"-"}, {{"1"}, {{"2"}, {"nil"}}}}, {"nil"}}}};
+
     return 0;
 }
