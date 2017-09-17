@@ -175,19 +175,15 @@ namespace tree
 	}
 
     private:
-	union
+	T _value; // The leaf part
+	
+	// The branch part
+	struct
 	{
-	    // The leaf part
-	    T  _value;
-
-	    // The branch part
-	    struct
-	    {
-		binary_tree *left;
-		binary_tree *right;
-	    } _children;
-	};
-
+	    binary_tree *left;
+	    binary_tree *right;
+	} _children;
+	
 	node_type _nodeType;
     };
 
