@@ -86,32 +86,50 @@ namespace parser
 
     tree::ast parse(token_list const& tokens)
     {
-	std::stack<tree::ast> trees;
-	trees.push(tree::ast{"parsing"});
+	std::stack<std::pair<tree::ast, bool> > trees;
+	trees.push({{"parsing"}, false});
 	
 	// For now don't care about the quotes and backquotes
 	for(auto const& t : tokens)
 	{
 	    if(t == "(")
 	    {
-		trees.push(tree::ast{"parsing"});
+		trees.push({tree::ast{"parsing"}, false});
 	    }
 	    else if(t == ")")
 	    {
 		// We append the current tree to the one before
-		auto sub{trees.top()};
+		tree::ast sub{trees.top().first};
 		trees.pop();
-		trees.top().append(sub);
+
+		if(trees.top().second) // If dot is true we dot it instead of append
+		{
+		    trees.top().first.left() = sub;
+		    trees.top().second = false;
+		}
+		else
+		    trees.top().first.append(sub);
+	    }
+	    else if(t == ".")
+	    {
+		// The next value should be dotted to the previous instead of appended
+		trees.top().second = true;
 	    }
 	    else
 	    {
-		trees.top().append(tree::ast{t});
+		if(trees.top().second)
+		{
+		    trees.top().first.right() = tree::ast{t};
+		    trees.top().second = false;		    
+		}
+		else
+		    trees.top().first.append(tree::ast{t});
 	    }
 	}
 
 	if (trees.size() != 1)
 	    throw std::runtime_error("Failed to parse");
 
-	return trees.top();
+	return trees.top().first;
     }
 }
