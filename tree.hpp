@@ -17,7 +17,8 @@ namespace tree
 	// The two constructors to build a leaf and a branch
 	binary_tree(T const& value = T()) : _value{value}, _nodeType{node_type::LEAF} {}
 	
-	binary_tree(binary_tree const& left, binary_tree const& right) : _children{new binary_tree{left}, new binary_tree{right}}, _nodeType{node_type::BRANCH} {}
+	binary_tree(binary_tree const& left, binary_tree const& right)
+	    : _children{new binary_tree{left}, new binary_tree{right}}, _nodeType{node_type::BRANCH} {}
 
 	// Copy constructor (1/5)
 	binary_tree(binary_tree const& other) : _nodeType{other._nodeType}
@@ -174,6 +175,18 @@ namespace tree
 	    }
 	}
 
+	std::ostream & basic_display(std::ostream & o) const
+	{
+	    if(_nodeType == node_type::LEAF)
+		return o << "*" << _value << "*";
+
+	    o << "(";
+	    _children.left->basic_display(o);
+	    o << " . ";
+	    _children.right->basic_display(o);
+	    return o << ")";
+	}
+
     private:
 	T _value; // The leaf part
 	
@@ -192,7 +205,7 @@ namespace tree
     template <typename T>
     std::ostream & operator<<(std::ostream & o, binary_tree<T> const& t)
     {
-	return t.display(o);
+	return t.basic_display(o);
     }
 
     // Aliases and type stuff

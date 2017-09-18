@@ -5,9 +5,30 @@
 
 namespace parser
 {
+    std::string specialChars{"().'`,"};
+    
     bool in_string(char c, std::string const& s)
     {
 	return s.find(c) != std::string::npos;
+    }
+
+    bool next_is_special(std::string::const_iterator & it, std::string const& str)
+    {
+	++it;
+	if(it == str.end())
+	{
+	    --it;
+	    return false;
+	}
+	
+	if(in_string(*it, specialChars))
+	{
+	    --it;
+	    return true;
+	}
+
+	--it;
+	return false;
     }
     
     token_list tokenize(std::string const& str)
@@ -17,13 +38,13 @@ namespace parser
 
 	bool inString{false};
 
-	std::string specialChars{"().'`,"};
-
-	for(auto const c : str)
+	for(auto it{str.begin()} ; it != str.end() ; ++it)
 	{
+	    auto const& c{*it};
+	    
 	    if(inString)
 	    {
-		// In a string add everything but the double quotes
+		// In a string add everything
 		currentToken += c;
 
 		if(c == '"')
@@ -39,11 +60,12 @@ namespace parser
 	    {
 		bool whitespace{isspace(c)};
 		bool specialChar{in_string(c, specialChars)};
+		bool nextIsSpecial{next_is_special(it, str)};
 
 		if(!whitespace)
 		    currentToken += c;
 
-		if(whitespace || specialChar)
+		if(whitespace || specialChar || nextIsSpecial)
 		{
 		    // If the token is nonempty we add it
 		    if(!currentToken.empty())
@@ -65,13 +87,14 @@ namespace parser
     tree::ast parse(token_list const& tokens)
     {
 	std::stack<tree::ast> trees;
+	trees.push(tree::ast{"parsing"});
 	
 	// For now don't care about the quotes and backquotes
 	for(auto const& t : tokens)
 	{
 	    if(t == "(")
 	    {
-		trees.push(tree::empty_branch());
+		trees.push(tree::ast{"parsing"});
 	    }
 	    else if(t == ")")
 	    {
@@ -89,6 +112,6 @@ namespace parser
 	if (trees.size() != 1)
 	    throw std::runtime_error("Failed to parse");
 
-	return trees.top().right();
+	return trees.top();
     }
 }
